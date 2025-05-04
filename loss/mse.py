@@ -14,5 +14,5 @@ def mse(yhat:tensor,y):
         for i in range(ans_size):
             loss+=(yhat.array[batch*ans_size+i]-y[i]).pow(2)
     
-    return loss*(1/(2*batch_size*ans_size))
+    return loss*(1/(2*batch_size))
     
