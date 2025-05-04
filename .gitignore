@@ -1,3 +1,6 @@
 datasets/*
-
 !datasets/.gitkeep
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
