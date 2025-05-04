@@ -29,7 +29,7 @@ X_train,mean,std = z_normalize(X_train)
 y_train,_mean,_std = z_normalize(y_train)
 model=MLP(14)
 
-for xb, yb in batch_loader(X_train, y_train, batch_size=16):
+for xb, yb in batch_loader(X_train, y_train, batch_size=4):
     #training needs yb yo be 1 dimensional array-like
     yb=yb.reshape(-1)
     xt= pd_to_tensor(xb)

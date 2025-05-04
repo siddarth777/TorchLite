@@ -187,3 +187,20 @@ def sigmoid(self):
     out._backward = _backward
 
     return out
+
+#log to the base e
+'''
+c=ln(a)
+dc/da= 1/a
+
+dl/da= dl/dc * 1/a
+'''
+def log(self):
+    out=value(math.log(self.val),(self,),'ln')
+
+    def _backward():
+        self.grad+=out.grad/self.val
+        
+    out._backward = _backward
+
+    return out
