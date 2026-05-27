@@ -46,6 +46,7 @@ public:
     Tensor sub(const Tensor& other) const;
     Tensor mul(const Tensor& other) const;
     Tensor matmul(const Tensor& other) const;
+    Tensor transpose() const;
     
     void fill(float value);
 };

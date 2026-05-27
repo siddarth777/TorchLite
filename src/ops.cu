@@ -77,3 +77,18 @@ void launch_matmul(const float* a, const float* b, float* out, int M, int K, int
     matmul_kernel<<<blocks, threads>>>(a, b, out, M, K, N);
     CHECK_CUDA(cudaGetLastError());
 }
+
+__global__ void transpose_kernel(const float* in, float* out, int M, int N) {
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    if (row < M && col < N) {
+        out[col * M + row] = in[row * N + col];
+    }
+}
+
+void launch_transpose(const float* in, float* out, int M, int N) {
+    dim3 threads(16, 16);
+    dim3 blocks((N + threads.x - 1) / threads.x, (M + threads.y - 1) / threads.y);
+    transpose_kernel<<<blocks, threads>>>(in, out, M, N);
+    CHECK_CUDA(cudaGetLastError());
+}

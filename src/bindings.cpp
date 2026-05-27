@@ -24,5 +24,6 @@ PYBIND11_MODULE(_C, m) {
         .def("sub", &Tensor::sub)
         .def("mul", &Tensor::mul)
         .def("matmul", &Tensor::matmul)
+        .def("transpose", &Tensor::transpose)
         .def("fill", &Tensor::fill);
 }

@@ -157,6 +157,23 @@ Tensor Tensor::matmul(const Tensor& other) const {
     return result;
 }
 
+Tensor Tensor::transpose() const {
+    if (shape.size() != 2) throw std::invalid_argument("Transpose only supports 2D tensors");
+    int M = shape[0];
+    int N = shape[1];
+    Tensor result({N, M}, get_device());
+    if (get_device() == Device::CPU) {
+        for (int i = 0; i < M; ++i) {
+            for (int j = 0; j < N; ++j) {
+                result.data_ptr()[j * M + i] = data_ptr()[i * N + j];
+            }
+        }
+    } else {
+        launch_transpose(data_ptr(), result.data_ptr(), M, N);
+    }
+    return result;
+}
+
 void Tensor::fill(float value) {
     if (get_device() == Device::CPU) {
         for (size_t i = 0; i < size(); ++i) data_ptr()[i] = value;
