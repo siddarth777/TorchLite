@@ -24,10 +24,10 @@ You can build the PyBind11 C++ extension using CMake.
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
+git clone https://github.com/siddarth777/TorchLite.git
 cd TorchLite
 
-# Build the C++/CUDA backend
+# Build the C++/CUDA backendc
 cmake -B build -S .
 cmake --build build -j
 ```
