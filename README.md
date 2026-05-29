@@ -79,15 +79,4 @@ b_gpu = b_cpu.to(Device.CUDA)
 c_gpu = a_gpu @ b_gpu
 ```
 
-## Running Tests
 
-To verify that TorchLite's forward passes and gradient calculations perfectly match PyTorch:
-
-```bash
-# Set up a virtual environment and install dependencies
-python3 -m venv venv
-./venv/bin/pip install torch numpy
-
-# Run the comparative tests
-./venv/bin/python tests/run_tests.py
-```
